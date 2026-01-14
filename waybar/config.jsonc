@@ -4,7 +4,7 @@
     "modules-left": [
         "custom/arch_button",
         "temperature",
-        "custom/playerctl"
+        "mpris"
     ],
     "modules-center": [
         "clock",
@@ -19,7 +19,7 @@
     ],
     "clock": {
         "interval": 60,
-        "format": "{:%I:%M %p}",
+        "format": " {:%I:%M %p}",
         "max-length": 25
     },
     "hyprland/workspaces": {
@@ -132,19 +132,38 @@
     "format": "󰖐 {temperatureC}°F "
 },
 
-"custom/playerctl": {
-	"format": "<span>{}</span>",
-	"return-type": "json",
-	"max-length": 50,
-	"exec": "playerctl -a metadata --format '{\"text\": \" {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-	"on-click-middle": "playerctl play-pause",
-	"on-click": "playerctl previous",
-	"on-click-right": "playerctl next",
-	"scroll-step": 5.0,
-	"on-scroll-up": "$HOME/.config/hypr/scripts/volume.sh --inc",
-	"on-scroll-down": "$HOME/.config/hypr/scripts/volume.sh --dec",
-	"smooth-scrolling-threshold": 1,
-}
+    "mpris": {
+	    "interval": 1,
+	    "format": "{player_icon} {dynamic}",
+	    "format-paused": "{status_icon} {artist}",
+	    "on-click-middle": "playerctl play-pause",
+	    "on-click": "playerctl previous",
+	    "on-click-right": "playerctl next",
+	    "scroll-step": 5.0,
+	    "on-scroll-up": "$HOME/.config/hypr/scripts/volume.sh --inc",
+	    "on-scroll-down": "$HOME/.config/hypr/scripts/volume.sh --dec",
+	    "smooth-scrolling-threshold": 1,
+	    "tooltip": true,
+	    "tooltip-format": "{status_icon} {title}\nLeft Click: previous\nMid Click: Pause\nRight Click: Next",
+	    "player-icons": {
+	    	"chromium": "",
+	    	"default": "",
+	    	"firefox": "",
+	    	"kdeconnect": "",
+	    	"mopidy": "",
+	    	"mpv": "󰐹",
+	    	"spotify": "󰎆",
+	    	"vlc": "󰕼",
+            "zen": "",
+	    },
+	    "status-icons": {
+	    	"paused": "",
+	    	"playing": "",
+	    	"stopped": "",
+	    },
+	    "dynamic-order": ["artist"],
+	    "max-length": 25,
+    }
 
 
 

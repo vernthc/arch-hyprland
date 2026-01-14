@@ -1,4 +1,4 @@
-@import 'colors/one-dark.css';
+@import 'colors/colors.css';
 
 * {
     border: none;
@@ -53,21 +53,21 @@ tooltip label {
     min-width: 44px;
     padding: 0 8px;
     border-radius: 16px;
-    background-image: linear-gradient(135deg, @rei5, @rei8);
+    background-image: linear-gradient(100deg, @on_primary, @primary);
     color: @bg0;
     font-size: 13px;
 }
 
 #workspaces button:hover {
-    background-image: linear-gradient(135deg, @rei5, @rei3);
-    color: @bg1;
+    background-image: linear-gradient(200deg, @on_primary, @primary);
+    color: @bg0;
     border-radius: 16px;
     min-width: 50px;
     background-size: 400% 400%
 }
 
 #workspaces button.urgent {
-    background-image: linear-gradient(135deg, @rei6, @rei7);
+    background-image: linear-gradient(135deg, @red, @black);
     color: @bg0;
     border-radius: 16px;
     min-width: 50px;
@@ -90,7 +90,7 @@ tooltip label {
     margin-left: 13px; 
 }
 
-#custom-playerctl {
+#mpris {
     padding: 0 15px;
     background: @bg0;
     color: @fg;
@@ -121,7 +121,7 @@ tooltip label {
 }
 
 #clock {
-    color: @rei2;
+    color: @fg;
 }
 
 #custom-notification {
@@ -129,21 +129,31 @@ tooltip label {
 }
 
 #pulseaudio {
-    color: @rei3;
+    color: @fg;
 }
 
 #network {
-    color: @rei3;
+    color: @fg;
 }
 
 #battery {
-    color: @rei2;
+    color: @fg;
 }
 
 #temperature {
-    color: @rei2;
-}
-
-#custom-playerctl {
     color: @fg;
 }
+
+#mpris {
+    color: @fg;
+}
+
+/* ==== aliases ====== */
+
+@define-color bg0 @background;
+@define-color bg1 @surface_container;
+@define-color bg3 @surface_variant;
+@define-color bg4 @surface_container_high;
+
+@define-color fg @primary ;
+@define-color red @error;
