@@ -1,0 +1,18 @@
+#!/bin/bash
+
+choice=$(printf "󰣇  Waybar Switcher\n󰸉  Wallpaper Switcher\n⏻  Log out\n  clipboard" | rofi -dmenu -p -theme ~/.local/share/rofi/themes/templates/menu.rasi "󰣇")
+
+case "$choice" in
+"󰣇  Waybar Switcher")
+  ~/.config/waybar/switch-theme.sh
+  ;;
+"󰸉  Wallpaper Switcher")
+  ~/.local/bin/wallpick
+  ;;
+"⏻  Log out")
+  wlogout --buttons-per-row 6
+  ;;
+"  clipboard")
+  ~/.config/scripts/clipboard.sh
+  ;;
+esac

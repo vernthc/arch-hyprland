@@ -1,0 +1,16 @@
+#!/bin/bash
+
+WALL="$1"
+
+swww img "$WALL" --transition-type grow --transition-fps 60
+
+sleep 0.3
+
+matugen image "$WALL"
+
+# reload waybar (optional)
+pkill -SIGUSR2 waybar
+
+# reload swaync (optional)
+swaync-client -R
+

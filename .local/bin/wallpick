@@ -1,0 +1,44 @@
+#!/bin/bash
+
+WALLDIR="/home/iwakura/Wallpapers"
+CACHE="$HOME/.cache/rofi-wallpapers"
+CURRENT_WALL="$HOME/.cache/current-wallpaper"
+
+mkdir -p "$CACHE"
+
+# get all wallpapers
+mapfile -t WALLPAPERS < <(find "$WALLDIR" -type f)
+
+menu=""
+
+for wp in "${WALLPAPERS[@]}"; do
+  name="$(basename "$wp")"
+  menu+="$name\0icon\x1f$wp\n"
+done
+
+# show rofi
+choice="$(echo -en "$menu" | rofi -dmenu -i -p "Wallpapers" -show-icons -theme ~/.local/share/rofi/themes/wallpapers.rasi)"
+
+[ -z "$choice" ] && exit 0
+
+IMG_PATH="$WALLDIR/$choice"
+IMG_NAME="${choice%.*}"
+
+# apply wallpaper
+~/.local/bin/setwall "$WALLDIR/$choice"
+
+#cache
+if [[ "$IMG_PATH" != *.gif ]]; then
+  ln -sf "$IMG_PATH" "$CURRENT_WALL"
+fi
+#cava updates
+~/.config/cava/update-cava.sh
+
+#swaync updates
+pkill swaync
+swaync &
+disown
+
+# update indicator
+notify-send "Changing Wallpaper.."
+sleep 1 && notify-send "Changing Wallpaper.." "Wallpaper Changed"
