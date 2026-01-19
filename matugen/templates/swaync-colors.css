@@ -1,0 +1,9 @@
+/* matugen swaync colors */
+
+@define-color bg0 {{ colors.background.default.hex }};
+@define-color bg1 {{ colors.surface.default.hex }};
+@define-color fg  {{ colors.on_surface.default.hex }};
+@define-color accent {{ colors.primary.default.hex }};
+@define-color red {{ colors.error.default.hex }};
+
+
